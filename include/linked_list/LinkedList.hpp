@@ -26,8 +26,7 @@ public:
     // remove methods
     bool remove_first();
     bool remove_last();
-    bool remove_val_first(T value);
-    bool remove_val_last(T value);
+    bool remove(T value, bool front);
 
     // display list values
     void display()const;
@@ -119,7 +118,48 @@ void LinkedList<T>::display() const{
     std:: cout << "]" << std::endl;
 }
 
+/*
+ * bool LinkedList<T>::remove(T value, bool front)
+ * remove the first element that have the specified value
+ * start from the front if front = true
+*/
+template<typename T>
+bool LinkedList<T>::remove(T value, bool front){
+    if(this->head == nullptr)
+        return false;
+    NodePointer it;
+    if(front)
+        it = this->head;
+    else
+        it = this->tail;
 
+    bool found_flag = false;
+    while( it != nullptr){
+        if(it->value == value){
+            if(it->next_ptr != nullptr)
+                it->next_ptr->previous_ptr = it->previous_ptr;
+            else
+                this->tail = it->previous_ptr;
+
+            if(it->previous_ptr != nullptr)    
+                it->previous_ptr->next_ptr = it->next_ptr;
+            else
+                this->head = it->next_ptr;
+            
+            it->next_ptr = nullptr;
+            it->previous_ptr = nullptr;
+            it = nullptr; 
+            found_flag = true;
+            this->size--;
+            break;
+        }
+        if(front)
+            it = it->next_ptr;
+        else
+            it = it->previous_ptr;
+    }
+    return found_flag;
+}
 
 
 /*
