@@ -35,6 +35,11 @@ public:
 
 };
 
+
+/*
+ * void LinkedList<T>::add_first(T value) 
+ * insert the value to the front of the list
+*/
 template<typename T>
 void LinkedList<T>::add_first(T value){
     std::shared_ptr<Node<T>> node_ptr = std::make_shared<Node<T>>(value);
@@ -49,6 +54,10 @@ void LinkedList<T>::add_first(T value){
     this->size++;
 }
 
+/*
+ * void LinkedList<T>::add_last(T value)
+ * insert the value at the end of the list
+*/
 template<typename T>
 void LinkedList<T>::add_last(T value){
     std::shared_ptr<Node<T>> node_ptr = std::make_shared<Node<T>>(value);
@@ -63,6 +72,26 @@ void LinkedList<T>::add_last(T value){
     this->size++;
 }
 
+/*
+ * bool LinkedList<T>::remove_first()
+ * remove the first item in the list, 
+ * return false if the list is empty
+*/
+template<typename T>
+bool LinkedList<T>::remove_first(){
+    if(this->head == nullptr)
+        return false;
+    this->head = this->head->next_ptr;
+    if(this->head != nullptr)
+        this->head->previous_ptr = nullptr;
+    this->size--;
+    return true;
+}
+
+/*
+ * void LinkedList<T>::display() const
+ * display the list elements from the front to the end
+*/
 template<typename T>
 void LinkedList<T>::display() const{
     std::shared_ptr<Node<T>> itr = this->head;
@@ -74,6 +103,11 @@ void LinkedList<T>::display() const{
     std:: cout << "]" << std::endl;
 }
 
+
+/*
+ * size_t LinkedList<T>::get_size()const
+ * return the current size of the list
+*/
 template<typename T>
 size_t LinkedList<T>::get_size()const{
     return this->size;
