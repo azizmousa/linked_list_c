@@ -15,7 +15,7 @@ private:
     size_t size; // counter for the list size
 
 public:
-
+    typedef  std::shared_ptr<Node<T>> NodePointer;
     LinkedList(): head{nullptr}, tail{nullptr}, size{0} {}
     ~LinkedList() = default;
 
@@ -48,7 +48,7 @@ void LinkedList<T>::add_first(T value){
         this->tail = node_ptr;
     }else{
         node_ptr->next_ptr = this->head;
-        head->previous_ptr = this->head; 
+        head->previous_ptr = node_ptr; 
         this->head = node_ptr;
     }
     this->size++;
@@ -118,6 +118,8 @@ void LinkedList<T>::display() const{
     }
     std:: cout << "]" << std::endl;
 }
+
+
 
 
 /*
