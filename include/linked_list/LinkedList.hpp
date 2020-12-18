@@ -6,7 +6,7 @@
 #include "linked_list/Node.hpp"
 
 template<typename T>
-class LikedList{
+class LinkedList{
 
 private:
 
@@ -16,8 +16,8 @@ private:
 
 public:
 
-    LikedList() = default;
-    ~LikedList() = default;
+    LinkedList();
+    ~LinkedList() = default;
 
     // insert methods 
     bool add_first(T value);
