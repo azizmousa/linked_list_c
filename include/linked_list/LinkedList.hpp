@@ -21,7 +21,7 @@ public:
 
     // insert methods 
     void add_first(T value);
-    bool add_last(T value);
+    void add_last(T value);
 
     // remove methods
     bool remove_first();
@@ -44,6 +44,20 @@ void LinkedList<T>::add_first(T value){
         node_ptr->next_ptr = this->head;
         head->previous_ptr = this->head; 
         this->head = node_ptr;
+    }
+    this->size++;
+}
+
+template<typename T>
+void LinkedList<T>::add_last(T value){
+    std::shared_ptr<Node<T>> node_ptr = std::make_shared<Node<T>>(value);
+    if(this->tail == nullptr){
+        this->head = node_ptr;
+        this->tail = node_ptr; 
+    }else{
+        this->tail->next_ptr = node_ptr;
+        node_ptr->previous_ptr = this->tail;
+        this->tail = node_ptr;
     }
     this->size++;
 }
