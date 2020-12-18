@@ -36,14 +36,16 @@ public:
 
 template<typename T>
 void LinkedList<T>::add_first(T value){
-    std::shared_ptr<Node<T>> node_ptr = std::make_shared<Node<T>>(Node<T>(value));
+    std::shared_ptr<Node<T>> node_ptr = std::make_shared<Node<T>>(value);
     if(this->head == nullptr){
         this->head = node_ptr;
         this->tail = node_ptr;
     }else{
         node_ptr->next_ptr = this->head;
+        head->previous_ptr = this->head; 
         this->head = node_ptr;
     }
+    this->size++;
 }
 
 template<typename T>
