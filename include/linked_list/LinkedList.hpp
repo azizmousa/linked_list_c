@@ -84,6 +84,22 @@ bool LinkedList<T>::remove_first(){
     this->head = this->head->next_ptr;
     if(this->head != nullptr)
         this->head->previous_ptr = nullptr;
+    else
+        this->tail = nullptr; 
+    this->size--;
+    return true;
+}
+
+template<typename T>
+bool LinkedList<T>::remove_last(){
+    if(this->head == nullptr)
+        return false;
+    
+    this->tail = this->tail->previous_ptr;
+    if(this-> tail != nullptr)
+        this->tail->next_ptr = nullptr;  
+    else
+        this->head = nullptr;
     this->size--;
     return true;
 }
