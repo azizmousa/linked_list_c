@@ -10,17 +10,17 @@ class LinkedList{
 
 private:
 
-    std::shared_ptr<Node> head; // the head of the list
-    std::shared_ptr<Node> tail; // the tail of the list
+    std::shared_ptr<Node<T>> head; // the head of the list
+    std::shared_ptr<Node<T>> tail; // the tail of the list
     size_t size; // counter for the list size
 
 public:
 
-    LinkedList();
+    LinkedList() = default;
     ~LinkedList() = default;
 
     // insert methods 
-    bool add_first(T value);
+    void add_first(T value);
     bool add_last(T value);
 
     // remove methods
@@ -30,8 +30,31 @@ public:
     bool remove_val_last(T value);
 
     // display list values
-    void display();
+    void display()const;
 
 };
+
+template<typename T>
+void LinkedList<T>::add_first(T value){
+    std::shared_ptr<Node<T>> node_ptr = std::make_shared<Node<T>>(Node<T>(value));
+    if(this->head == nullptr){
+        this->head = node_ptr;
+        this->tail = node_ptr;
+    }else{
+        node_ptr->next_ptr = this->head;
+        this->head = node_ptr;
+    }
+}
+
+template<typename T>
+void LinkedList<T>::display() const{
+    std::shared_ptr<Node<T>> itr = this->head;
+    std::cout << "[ ";
+    while(itr != nullptr){
+        std::cout << itr->value << " ";
+        itr = itr->next_ptr;
+    }
+    std:: cout << "]" << std::endl;
+}
 
 #endif//_LIKED_LIST_HPP
