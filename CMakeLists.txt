@@ -2,7 +2,7 @@
 cmake_minimum_required( VERSION 3.19 )
 
 # project name
-set(PROJECT_NAME "linke_list")
+set(PROJECT_NAME "linked_list")
 project( ${PROJECT_NAME} )
 
 # flags
