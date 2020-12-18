@@ -6,8 +6,8 @@
 template<typename T>
 struct Node
 {
-    std::shared_ptr<Node> next_ptr;
-    std::shared_ptr<Node>previous_pre;
+    std::shared_ptr<Node<T>> next_ptr;
+    std::shared_ptr<Node<T>>previous_pre;
     T value;
 };
 
