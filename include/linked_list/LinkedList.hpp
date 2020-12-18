@@ -16,7 +16,7 @@ private:
 
 public:
 
-    LinkedList() = default;
+    LinkedList(): head{nullptr}, tail{nullptr}, size{0} {}
     ~LinkedList() = default;
 
     // insert methods 
@@ -31,6 +31,7 @@ public:
 
     // display list values
     void display()const;
+    size_t get_size()const;
 
 };
 
@@ -71,6 +72,11 @@ void LinkedList<T>::display() const{
         itr = itr->next_ptr;
     }
     std:: cout << "]" << std::endl;
+}
+
+template<typename T>
+size_t LinkedList<T>::get_size()const{
+    return this->size;
 }
 
 #endif//_LIKED_LIST_HPP
