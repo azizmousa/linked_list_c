@@ -8,7 +8,6 @@
 template<typename T>
 class LinkedList{
 
-    typedef  std::shared_ptr<Node<T>> NodePointer;
 
 private:
 
@@ -16,6 +15,7 @@ private:
     std::shared_ptr<Node<T>> tail; // the tail of the list
     size_t size; // counter for the list size
 public:
+    typedef  std::shared_ptr<Node<T>> NodePointer;
     LinkedList(): head{nullptr}, tail{nullptr}, size{0} {}
     ~LinkedList() = default;
 
@@ -34,7 +34,11 @@ public:
 
 
     // find method
-    NodePointer find(T value);
+    NodePointer find(T value)const;
+
+    // the stucture iterators
+    NodePointer begin()const;
+    NodePointer end()const;
 
 };
 
@@ -181,7 +185,7 @@ size_t LinkedList<T>::get_size()const{
  * find the value node and return its pointer
 */
 template<typename T>
-std::shared_ptr<Node<T>> LinkedList<T>::find(T value){
+std::shared_ptr<Node<T>> LinkedList<T>::find(T value)const{
     NodePointer itr = this->head;
     while(itr != nullptr){
         if(itr->value == value)
@@ -190,5 +194,24 @@ std::shared_ptr<Node<T>> LinkedList<T>::find(T value){
     }
     return nullptr;
 }
+
+/*
+ * std::shared_ptr<Node<T>> LinkedList<T>::begin()const
+ * return the pointer to the first element in the list
+*/
+template<typename T>
+std::shared_ptr<Node<T>> LinkedList<T>::begin()const{
+    return this->head;
+}
+
+/*
+ * std::shared_ptr<Node<T>> LinkedList<T>::end()const
+ * return the pointer to the last element in the list
+*/
+template<typename T>
+std::shared_ptr<Node<T>> LinkedList<T>::end()const{
+    return this->tail;
+}
+
 
 #endif//_LIKED_LIST_HPP
