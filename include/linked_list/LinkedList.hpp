@@ -8,14 +8,14 @@
 template<typename T>
 class LinkedList{
 
+    typedef  std::shared_ptr<Node<T>> NodePointer;
+
 private:
 
     std::shared_ptr<Node<T>> head; // the head of the list
     std::shared_ptr<Node<T>> tail; // the tail of the list
     size_t size; // counter for the list size
-
 public:
-    typedef  std::shared_ptr<Node<T>> NodePointer;
     LinkedList(): head{nullptr}, tail{nullptr}, size{0} {}
     ~LinkedList() = default;
 
@@ -31,6 +31,10 @@ public:
     // display list values
     void display()const;
     size_t get_size()const;
+
+
+    // find method
+    NodePointer find(T value);
 
 };
 
@@ -169,6 +173,22 @@ bool LinkedList<T>::remove(T value, bool front){
 template<typename T>
 size_t LinkedList<T>::get_size()const{
     return this->size;
+}
+
+
+/*
+ * std::shared_ptr<Node<T>> LinkedList<T>::find(T value)
+ * find the value node and return its pointer
+*/
+template<typename T>
+std::shared_ptr<Node<T>> LinkedList<T>::find(T value){
+    NodePointer itr = this->head;
+    while(itr != nullptr){
+        if(itr->value == value)
+            return itr;
+       itr = itr->next_ptr; 
+    }
+    return nullptr;
 }
 
 #endif//_LIKED_LIST_HPP
