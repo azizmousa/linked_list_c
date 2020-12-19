@@ -17,5 +17,6 @@ int main(int argc, char *argv[]){
     ls.remove(30, false);
     ls.display();
     std::cout << ls.get_size() << std::endl;
+    std::cout << ls.find(10)->value << std::endl;
     return 0;
 }
